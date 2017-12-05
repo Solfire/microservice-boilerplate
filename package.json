@@ -1,13 +1,19 @@
 {
-  "name": "microservice-boilerplate",
+  "name": "coletta",
   "version": "0.0.1",
+  "description": "VUI Application",
+  "author": "Carrypicker",
   "private": true,
   "scripts": {
     "start": "NODE_ENV=development nodemon ./bin/www",
+    "start:ssl": "NODE_ENV=development nodemon ./bin/www-ssl",
     "eslint": "eslint src",
-    "start:prod": "node ./bin/www"
+    "start:prod": "node ./bin/www",
+    "docker:start": "docker run -p 8080:3005 -d carrypicker/coletta",
+    "docker:create":"docker build -t carrypicker/coletta ."
   },
   "dependencies": {
+    "actions-on-google": "^1.6.1",
     "body-parser": "^1.17.2",
     "cookie-parser": "~1.4.3",
     "debug": "^2.6.9",

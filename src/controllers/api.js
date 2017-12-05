@@ -9,3 +9,8 @@ exports.root = (req, res) => {
     response: res.locals.responseText
   });
 };
+
+exports.clean = (req, res) => {
+  res.json();
+  //res.send();
+};

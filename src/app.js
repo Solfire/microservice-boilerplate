@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const logger = require('./util/logger');
 
 const helloWorld = require('./middleware/helloWorld');
+const coletta = require('./middleware/coletta');
 
 const apiController = require('./controllers/api');
 
@@ -26,10 +27,17 @@ app.use(cookieParser());
 
 // routes
 app.get('/health', apiController.health);
+app.get('/coletta', apiController.health);
 app.get('/', [
   helloWorld,
   apiController.root
 ]);
+app.post('/coletta', [
+  coletta,
+  apiController.clean
+]);
+
+//app.post('/coletta', coletta);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
