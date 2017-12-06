@@ -87,7 +87,7 @@ module.exports = (request, response, next) => {
 
   function tourSurveyModifyAllIntent(app){
     console.log(app.getIntent());
-    const tourOrigin = app.getArgument(GEO_ORIGIN_CITY_ARG);
+    const tourOrigin = app.getContextArgument(OUT_SURVEY_DECISION,GEO_ORIGIN_CITY_ARG);
     if(tourOrigin) {
       console.log('Beladeort: ' + tourOrigin.value);
     };
