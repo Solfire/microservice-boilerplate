@@ -4,7 +4,6 @@
 const { DialogflowApp } = require('actions-on-google');
 
 module.exports = (request, response, next) => {
-//exports.yourAction = functions.https.onRequest((request, response) => {
   const app = new DialogflowApp({request, response});
   //console.log('Request headers: ' + JSON.stringify(request.headers));
   //console.log('Request body: ' + JSON.stringify(request.body));
@@ -38,24 +37,19 @@ module.exports = (request, response, next) => {
     parameters[DATE_ARG] = app.getArgument(DATE_ARG);
     parameters[TIME_ARG] = app.getArgument(TIME_ARG);
     parameters[VEHICLE_ARG] = app.getArgument(VEHICLE_ARG);
-    parameters[VEHICLE_PLATFORM_ARG] = (app.getArgument(VEHICLE_PLATFORM_ARG))?app.getArgument(VEHICLE_PLATFORM_ARG):VEHICLE_PLATFORM_DEFAULT;
+    parameters[VEHICLE_PLATFORM_ARG] = app.getArgument(VEHICLE_PLATFORM_ARG);
     app.setContext(OUT_SURVEY_DECISION, 5, parameters);
-    //console.log('ASK: ' + JSON.stringify(request.body.result.fulfillment.speech));
-    const speech = request.body.result.fulfillment.speech
-    //app.ask(speech);
   }
 
   function tourSurveyConfirmIntent(app) {
     console.log(app.getIntent());
-
     let output = {};
     output[GEO_ORIGIN_CITY_ARG] = app.getContextArgument(OUT_SURVEY_DECISION,GEO_ORIGIN_CITY_ARG);
     output[GEO_DESTINATION_CITY_ARG] = app.getContextArgument(OUT_SURVEY_DECISION,GEO_DESTINATION_CITY_ARG);
     output[DATE_ARG] = app.getContextArgument(OUT_SURVEY_DECISION,DATE_ARG);
     output[TIME_ARG] = app.getContextArgument(OUT_SURVEY_DECISION,TIME_ARG);
     output[VEHICLE_ARG] = app.getContextArgument(OUT_SURVEY_DECISION,VEHICLE_ARG);
-    output[VEHICLE_PLATFORM_ARG] = app.getArgument(VEHICLE_PLATFORM_ARG);
-
+    output[VEHICLE_PLATFORM_ARG] = app.getContextArgument(OUT_SURVEY_DECISION,VEHICLE_PLATFORM_ARG);
     console.log(`TourData: ${JSON.stringify(output)}`);
   }
 
@@ -93,6 +87,14 @@ module.exports = (request, response, next) => {
 
   function tourSurveyModifyAllIntent(app){
     console.log(app.getIntent());
+    if(tourOrigin = app.getArgument(GEO_ORIGIN_CITY_ARG) {
+      console.log('Beladeort: ' + tourOrigin.value);
+    };
+    //parameters[GEO_DESTINATION_CITY_ARG] = app.getArgument(GEO_DESTINATION_CITY_ARG);
+    //parameters[DATE_ARG] = app.getArgument(DATE_ARG);
+    //parameters[TIME_ARG] = app.getArgument(TIME_ARG);
+    //parameters[VEHICLE_ARG] = app.getArgument(VEHICLE_ARG);
+    //parameters[VEHICLE_PLATFORM_ARG] = app.getArgument(VEHICLE_PLATFORM_ARG);
   }
 
   const actionMap = new Map();
