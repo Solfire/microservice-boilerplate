@@ -99,8 +99,8 @@ module.exports = (request, response, next) => {
     const newVehiclePlatform = app.getArgument('newVehiclePlatform');
     modify[VEHICLE_PLATFORM_ARG] = (newVehiclePlatform) ? newVehiclePlatform : app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
     console.log(`newTourData: ${JSON.stringify(modify)}`);
-    app.setContext('OUT_SURVEY_DECISION', 5, modify);
-    app.setContext('tourChangeAll', 5, modify);
+    app.setContext(OUT_SURVEY_DECISION, 5, modify);
+    app.setContext('tourchangeall', 5, modify);
   }
 
   const actionMap = new Map();
