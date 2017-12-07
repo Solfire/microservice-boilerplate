@@ -85,21 +85,21 @@ module.exports = (request, response, next) => {
 
   function tourSurveyModifyAllIntent(app) {
     console.log(app.getIntent());
-    const output = {};
+    const modify = {};
     const newOrigin = app.getArgument('newOrigin');
-    output[GEO_ORIGIN_CITY_ARG] = (newOrigin) ? newOrigin : app.getContextArgument(OUT_SURVEY_DECISION, GEO_ORIGIN_CITY_ARG);
+    modify[GEO_ORIGIN_CITY_ARG] = (newOrigin) ? newOrigin : app.getContextArgument(OUT_SURVEY_DECISION, GEO_ORIGIN_CITY_ARG);
     const newDestination = app.getArgument('newDestination');
-    output[GEO_DESTINATION_CITY_ARG] = (newDestination) ? newDestination : app.getContextArgument(OUT_SURVEY_DECISION, GEO_DESTINATION_CITY_ARG);
+    modify[GEO_DESTINATION_CITY_ARG] = (newDestination) ? newDestination : app.getContextArgument(OUT_SURVEY_DECISION, GEO_DESTINATION_CITY_ARG);
     const newStartDate= app.getArgument('newDate');
-    output[DATE_ARG] = (newStartDate) ? newStartDate : app.getContextArgument(OUT_SURVEY_DECISION, DATE_ARG);
+    modify[DATE_ARG] = (newStartDate) ? newStartDate : app.getContextArgument(OUT_SURVEY_DECISION, DATE_ARG);
     const newStartTime = app.getArgument('newTime');
-    output[TIME_ARG] = (newStartTime) ? newStartTime : app.getContextArgument(OUT_SURVEY_DECISION, TIME_ARG);
+    modify[TIME_ARG] = (newStartTime) ? newStartTime : app.getContextArgument(OUT_SURVEY_DECISION, TIME_ARG);
     const newVehicle = app.getArgument('newVehicle');
-    output[VEHICLE_ARG] = (newVehicle) ? newVehicle : app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_ARG);
+    modify[VEHICLE_ARG] = (newVehicle) ? newVehicle : app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_ARG);
     const newVehiclePlatform = app.getArgument('newVehiclePlatform');
-    output[VEHICLE_PLATFORM_ARG] = (newVehiclePlatform) ? newVehiclePlatform : app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
-    console.log(`newTourData: ${JSON.stringify(output)}`);
-    app.setContext(OUT_SURVEY_DECISION, 5, output);
+    modify[VEHICLE_PLATFORM_ARG] = (newVehiclePlatform) ? newVehiclePlatform : app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
+    console.log(`newTourData: ${JSON.stringify(modify)}`);
+    app.setContext(OUT_SURVEY_DECISION, 5, modify);
   }
 
   const actionMap = new Map();
