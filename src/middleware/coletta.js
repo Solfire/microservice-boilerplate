@@ -86,9 +86,9 @@ module.exports = (request, response, next) => {
   function tourSurveyModifyAllIntent(app) {
     console.log(app.getIntent());
     let modify = {};
-    const newOrigin = app.getArgument('newOrigin');
+    const newOrigin = app.getArgument(GEO_ORIGIN_CITY_ARG);
     modify[GEO_ORIGIN_CITY_ARG] = (newOrigin) ? newOrigin : app.getContextArgument(OUT_SURVEY_DECISION, GEO_ORIGIN_CITY_ARG);
-    const newDestination = app.getArgument('newDestination');
+    const newDestination = app.getArgument(GEO_DESTINATION_CITY_ARG);
     modify[GEO_DESTINATION_CITY_ARG] = (newDestination) ? newDestination : app.getContextArgument(OUT_SURVEY_DECISION, GEO_DESTINATION_CITY_ARG);
     const newStartDate= app.getArgument('newDate');
     modify[DATE_ARG] = (newStartDate) ? newStartDate : app.getContextArgument(OUT_SURVEY_DECISION, DATE_ARG);
@@ -99,7 +99,8 @@ module.exports = (request, response, next) => {
     const newVehiclePlatform = app.getArgument('newVehiclePlatform');
     modify[VEHICLE_PLATFORM_ARG] = (newVehiclePlatform) ? newVehiclePlatform : app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
     console.log(`newTourData: ${JSON.stringify(modify)}`);
-    app.setContext(OUT_SURVEY_DECISION, 5, modify);
+    app.setContext('OUT_SURVEY_DECISION', 5, modify);
+    app.setContext('tourChangeAll', 5, modify);
   }
 
   const actionMap = new Map();
