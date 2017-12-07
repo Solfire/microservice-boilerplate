@@ -85,7 +85,7 @@ module.exports = (request, response, next) => {
 
   function tourSurveyModifyAllIntent(app) {
     console.log(app.getIntent());
-    const modify = {};
+    let modify = {};
     const newOrigin = app.getArgument('newOrigin');
     modify[GEO_ORIGIN_CITY_ARG] = (newOrigin) ? newOrigin : app.getContextArgument(OUT_SURVEY_DECISION, GEO_ORIGIN_CITY_ARG);
     const newDestination = app.getArgument('newDestination');
