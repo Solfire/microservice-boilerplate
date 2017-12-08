@@ -27,17 +27,15 @@ app.use(cookieParser());
 
 // routes
 app.get('/health', apiController.health);
-app.get('/coletta', apiController.health);
+app.get('/v1', apiController.health);
 app.get('/', [
   helloWorld,
   apiController.root
 ]);
-app.post('/coletta', [
+app.post('/v1', [
   coletta,
   apiController.clean
 ]);
-
-//app.post('/coletta', coletta);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
