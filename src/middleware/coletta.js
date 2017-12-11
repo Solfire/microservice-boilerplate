@@ -49,7 +49,9 @@ module.exports = (request, response, next) => {
     output[TIME_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, TIME_ARG);
     output[VEHICLE_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_ARG);
     output[VEHICLE_PLATFORM_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
+    output['contact'] = '123456';
     console.log(`TourData: ${JSON.stringify(output)}`);
+    sendData_(output);
   }
 
   function tourSurveyModifyDateIntent(app) {
@@ -104,15 +106,6 @@ module.exports = (request, response, next) => {
     app.setContext(OUT_SURVEY_DECISION, 5, modify);
     app.setContext('tourchangeall', 5, modify);
     */
-
-    output[GEO_ORIGIN_CITY_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, GEO_ORIGIN_CITY_ARG);
-    output[GEO_DESTINATION_CITY_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, GEO_DESTINATION_CITY_ARG);
-    output[DATE_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, DATE_ARG);
-    output[TIME_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, TIME_ARG);
-    output[VEHICLE_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_ARG);
-    output[VEHICLE_PLATFORM_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
-    output['contact'] = '123456';
-    sendData_(output);
   }
 
   const actionMap = new Map();
