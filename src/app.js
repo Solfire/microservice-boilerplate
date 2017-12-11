@@ -1,4 +1,5 @@
 const express = require('express');
+const basicAuth = require('express-basic-auth');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -10,6 +11,13 @@ const coletta = require('./middleware/coletta');
 const apiController = require('./controllers/api');
 
 const app = express();
+
+app.use(basicAuth({
+  users: {
+    'admin': 'colletademo',
+    'dialogflow': 'xcf100ab!'
+  }
+}))
 
 app.use('/', morgan('tiny', {
   stream: {
