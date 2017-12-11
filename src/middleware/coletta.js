@@ -133,6 +133,7 @@ module.exports = (request, response, next) => {
     const path = '/tourapi/tours/speech';
     const username = 'tourapp';
     const password = 'colletainput';
+    const auth = 'Basic ' + btoa(username + ":" + password);
 
     const post_options = {
       host: baseURL,
@@ -142,7 +143,7 @@ module.exports = (request, response, next) => {
       headers: {
           'Content-Type': 'application/json',
           'Content-Length': Buffer.byteLength(data),
-          'Authorization': "Basic " + btoa(username + ":" + password);
+          'Authorization': auth
       }
     };
 
