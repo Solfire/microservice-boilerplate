@@ -12,11 +12,12 @@ const apiController = require('./controllers/api');
 
 const app = express();
 
-app.use(basicAuth({
+app.use('/v1', basicAuth({
   users: {
     'admin': 'colletademo',
     'dialogflow': 'xcf100ab!'
-  }
+  },
+  challenge: true
 }))
 
 app.use('/', morgan('tiny', {

@@ -1,4 +1,5 @@
 // process.env.DEBUG = 'actions-on-google:*';
+const http = require('http');
 const { DialogflowApp } = require('actions-on-google');
 
 module.exports = (request, response, next) => {
@@ -103,6 +104,15 @@ module.exports = (request, response, next) => {
     app.setContext(OUT_SURVEY_DECISION, 5, modify);
     app.setContext('tourchangeall', 5, modify);
     */
+
+    output[GEO_ORIGIN_CITY_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, GEO_ORIGIN_CITY_ARG);
+    output[GEO_DESTINATION_CITY_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, GEO_DESTINATION_CITY_ARG);
+    output[DATE_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, DATE_ARG);
+    output[TIME_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, TIME_ARG);
+    output[VEHICLE_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_ARG);
+    output[VEHICLE_PLATFORM_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
+    output['contact'] = '123456';
+    sendData_(output);
   }
 
   const actionMap = new Map();
@@ -116,4 +126,35 @@ module.exports = (request, response, next) => {
   actionMap.set(TOUR_SURVEY_MODIFY_ALL, tourSurveyModifyAllIntent);
   app.handleRequest(actionMap);
   next();
+
+  function sendData_(data) {
+    console.log('sendData');
+    const baseURL = 'https://api.colleta.de';
+    const path = '/tourapi/tours/speech';
+    const username = 'tourapp';
+    const password = 'colletainput';
+
+    const post_options = {
+      host: baseURL,
+      port: '80',
+      path: path,
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(data),
+          'Authorization': "Basic " + btoa(username + ":" + password);
+      }
+    };
+
+    // Set up the request
+    const post_req = http.request(post_options, function(res) {
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            console.log('Response: ' + chunk);
+        });
+    });
+    // post the data
+    post_req.write(data);
+    post_req.end();
+  }
 };
