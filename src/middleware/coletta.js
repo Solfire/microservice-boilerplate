@@ -126,7 +126,8 @@ module.exports = (request, response, next) => {
     const path = '/tourapi/tours/speech';
     const username = 'tourapp';
     const password = 'colletainput';
-    const auth = 'Basic ' + btoa(username + ":" + password);
+    const b64Encoded = username + ":" + password;
+    const auth = 'Basic ' + Buffer.from(b64Encoded, 'base64').toString();
 
     const post_options = {
       host: baseURL,
