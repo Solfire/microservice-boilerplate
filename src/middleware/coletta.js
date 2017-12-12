@@ -121,7 +121,7 @@ module.exports = (request, response, next) => {
   next();
 
   function sendData_(data) {
-    console.log('sendData');
+    console.log('sendData:' + data);
     const baseURL = 'api.colleta.de';
     const path = '/tourapi/tours/speech';
     const username = 'tourapp';
