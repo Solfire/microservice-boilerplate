@@ -122,26 +122,27 @@ module.exports = (request, response, next) => {
 
   function sendData_(data) {
     console.log('sendData');
-    const baseURL = 'https://api.colleta.de';
+    const baseURL = 'api.colleta.de';
     const path = '/tourapi/tours/speech';
     const username = 'tourapp';
     const password = 'colletainput';
-    const b64Encoded = username + ":" + password;
-    const auth = 'Basic dG91cmFwcDpjb2xsZXRhaW5wdXQ='//'Basic ' + Buffer.from(b64Encoded, 'base64').toString(); //Basic dG91cmFwcDpjb2xsZXRhaW5wdXQ=
+    const credentials = username + ":" + password;
+    const auth = 'Basic dG91cmFwcDpjb2xsZXRhaW5wdXQ='//'Basic ' + Buffer.from(credentials, 'base64').toString(); //Basic dG91cmFwcDpjb2xsZXRhaW5wdXQ=
     const length = Buffer.byteLength(data).toString();
 
     console.log(auth);
 
     const post_options = {
+      protocol: 'https',
       host: baseURL,
-      port: '80',
+      //port: '443',
       path: path,
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
           'Content-Length': length,
-          'Authorization': auth
-      }
+      },
+      auth: credentials
     };
 
     // Set up the request
