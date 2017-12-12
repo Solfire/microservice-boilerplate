@@ -49,9 +49,9 @@ module.exports = (request, response, next) => {
     output[TIME_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, TIME_ARG);
     output[VEHICLE_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_ARG);
     output[VEHICLE_PLATFORM_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
-    output['contact'] = '123456';
+    //output['contact'] = '123456';
     console.log(`TourData: ${JSON.stringify(output)}`);
-    sendData_(JSON.stringify(output));
+    //sendData_(JSON.stringify(output));
   }
 
   function tourSurveyModifyDateIntent(app) {
