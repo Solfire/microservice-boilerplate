@@ -127,7 +127,7 @@ module.exports = (request, response, next) => {
     const username = 'tourapp';
     const password = 'colletainput';
     const b64Encoded = username + ":" + password;
-    const auth = 'Basic ' + Buffer.from(b64Encoded, 'base64').toString(); //Basic dG91cmFwcDpjb2xsZXRhaW5wdXQ=
+    const auth = 'Basic dG91cmFwcDpjb2xsZXRhaW5wdXQ='//'Basic ' + Buffer.from(b64Encoded, 'base64').toString(); //Basic dG91cmFwcDpjb2xsZXRhaW5wdXQ=
     const length = Buffer.byteLength(data).toString();
 
     console.log(auth);
