@@ -1,5 +1,5 @@
 // process.env.DEBUG = 'actions-on-google:*';
-const http = require('http');
+const https = require('https');
 const { DialogflowApp } = require('actions-on-google');
 
 module.exports = (request, response, next) => {
@@ -146,7 +146,7 @@ module.exports = (request, response, next) => {
     };
 
     // Set up the request
-    const post_req = http.request(post_options, function(res) {
+    const post_req = https.request(post_options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
             console.log('Response: ' + chunk);
