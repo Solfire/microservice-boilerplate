@@ -133,7 +133,7 @@ module.exports = (request, response, next) => {
     console.log(auth);
 
     const post_options = {
-      protocol: 'https',
+      protocol: 'https:',
       host: baseURL,
       //port: '443',
       path: path,
