@@ -51,7 +51,7 @@ module.exports = (request, response, next) => {
     output[VEHICLE_PLATFORM_ARG] = app.getContextArgument(OUT_SURVEY_DECISION, VEHICLE_PLATFORM_ARG);
     output['contact'] = '123456';
     console.log(`TourData: ${JSON.stringify(output)}`);
-    sendData_(output);
+    sendData_(JSON.stringify(output));
   }
 
   function tourSurveyModifyDateIntent(app) {
@@ -129,6 +129,8 @@ module.exports = (request, response, next) => {
     const b64Encoded = username + ":" + password;
     const auth = 'Basic ' + Buffer.from(b64Encoded, 'base64').toString(); //Basic dG91cmFwcDpjb2xsZXRhaW5wdXQ=
     const length = Buffer.byteLength(data).toString();
+
+    console.log(auth);
 
     const post_options = {
       host: baseURL,
